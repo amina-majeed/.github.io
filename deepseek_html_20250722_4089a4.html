@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NASTRON SOLUTIONS - Tech Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a2a4a, #0a1a3a);
+            padding: 20px;
+        }
+        
+        .ad-container {
+            position: relative;
+            width: 1000px;
+            max-width: 95%;
+            background: linear-gradient(145deg, #001a33, #002b55);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px rgba(0, 20, 60, 0.8);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+        }
+        
+        /* Background effects */
+        .background-effects {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            overflow: hidden;
+        }
+        
+        .binary-pattern {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 100, 180, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 100, 180, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.4;
+        }
+        
+        .particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+        }
+        
+        .particle {
+            position: absolute;
+            background-color: #00aaff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px 2px rgba(0, 170, 255, 0.7);
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(20px);
+                opacity: 0.8;
+            }
+        }
+        
+        .light-beam {
+            position: absolute;
+            top: 180px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #00aaff, transparent);
+            box-shadow: 0 0 15px 2px rgba(0, 170, 255, 0.5);
+        }
+        
+        /* Header styles */
+        .header {
+            position: relative;
+            z-index: 3;
+            text-align: center;
+            padding: 40px 0 30px;
+        }
+        
+        .company-name {
+            font-size: 52px;
+            font-weight: 800;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 15px;
+            text-shadow: 0 0 20px rgba(0, 170, 255, 0.8);
+        }
+        
+        .tagline {
+            font-size: 22px;
+            color: #66c2ff;
+            font-weight: 300;
+            letter-spacing: 1.5px;
+            max-width: 800px;
+            margin: 0 auto;
+            line-height: 1.5;
+        }
+        
+        /* Services showcase */
+        .services-showcase {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            padding: 20px 40px;
+        }
+        
+        .service-card {
+            background: rgba(10, 40, 70, 0.3);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 150, 255, 0.25);
+            border-radius: 16px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 30px rgba(0, 50, 120, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            background: rgba(20, 60, 100, 0.4);
+            box-shadow: 0 15px 40px rgba(0, 100, 200, 0.6);
+        }
+        
+        .service-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .service-icon {
+            font-size: 42px;
+            margin-right: 20px;
+            width: 70px;
+            height: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 120, 220, 0.15);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 170, 255, 0.3);
+        }
+        
+        .service-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: white;
+        }
+        
+        .service-desc {
+            font-size: 16px;
+            color: #a3d5ff;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .service-features {
+            list-style: none;
+            padding-left: 15px;
+            border-left: 2px solid rgba(0, 170, 255, 0.4);
+        }
+        
+        .service-features li {
+            padding: 8px 0;
+            color: #88c9ff;
+            font-size: 15px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .service-features li:before {
+            content: "•";
+            color: #00aaff;
+            font-size: 24px;
+            position: absolute;
+            left: 0;
+            top: 0;
+            line-height: 1;
+        }
+        
+        /* Footer section */
+        .footer {
+            position: relative;
+            z-index: 2;
+            background: rgba(5, 35, 65, 0.7);
+            margin: 40px 0 0;
+            padding: 40px;
+            text-align: center;
+            border-top: 2px solid rgba(0, 150, 255, 0.3);
+        }
+        
+        .cta-box {
+            background: linear-gradient(90deg, #003366, #004b8d);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            box-shadow: 0 10px 30px rgba(0, 50, 100, 0.4);
+            border: 1px solid rgba(0, 170, 255, 0.3);
+        }
+        
+        .cta-text {
+            font-size: 32px;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(0, 170, 255, 0.7);
+        }
+        
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #66c2ff;
+            font-size: 18px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        
+        .contact-item:hover {
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            color: #00aaff;
+        }
+        
+        .final-tagline {
+            color: #88c9ff;
+            font-size: 18px;
+            font-style: italic;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .company-name {
+                font-size: 36px;
+            }
+            
+            .tagline {
+                font-size: 18px;
+            }
+            
+            .cta-text {
+                font-size: 26px;
+            }
+            
+            .services-showcase {
+                grid-template-columns: 1fr;
+                padding: 20px;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="ad-container">
+        <!-- Background effects -->
+        <div class="background-effects">
+            <div class="binary-pattern"></div>
+            <div class="particles" id="particles-container"></div>
+            <div class="light-beam"></div>
+        </div>
+        
+        <!-- Header -->
+        <div class="header">
+            <h1 class="company-name">NASTRON SOLUTIONS</h1>
+            <p class="tagline">Comprehensive Technology Services for Modern Businesses</p>
+        </div>
+        
+        <!-- Services Showcase -->
+        <div class="services-showcase">
+            <!-- Website Development -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🚀</div>
+                    <h2 class="service-title">Website Development</h2>
+                </div>
+                <p class="service-desc">Cutting-edge web solutions with responsive designs that deliver exceptional user experiences across all devices.</p>
+                <ul class="service-features">
+                    <li>Lightning-fast performance optimization</li>
+                    <li>SEO-friendly architecture</li>
+                    <li>E-commerce integration</li>
+                    <li>Scalable solutions for growth</li>
+                </ul>
+            </div>
+            
+            <!-- Mobile App Development -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📱</div>
+                    <h2 class="service-title">Mobile App Development</h2>
+                </div>
+                <p class="service-desc">Native and cross-platform applications that provide seamless experiences on iOS and Android devices.</p>
+                <ul class="service-features">
+                    <li>User-centric interface design</li>
+                    <li>Offline functionality</li>
+                    <li>Biometric security integration</li>
+                    <li>Real-time synchronization</li>
+                </ul>
+            </div>
+            
+            <!-- AI & Cloud Solutions -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">☁️</div>
+                    <h2 class="service-title">AI & Cloud Solutions</h2>
+                </div>
+                <p class="service-desc">Intelligent systems powered by cloud technology that drive efficiency and innovation.</p>
+                <ul class="service-features">
+                    <li>Machine learning implementation</li>
+                    <li>Scalable cloud infrastructure</li>
+                    <li>Predictive analytics</li>
+                    <li>Automated workflow optimization</li>
+                </ul>
+            </div>
+            
+            <!-- Virtual Assistant Services -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🤖</div>
+                    <h2 class="service-title">Virtual Assistant Services</h2>
+                </div>
+                <p class="service-desc">Intelligent automation solutions that streamline operations and enhance productivity.</p>
+                <ul class="service-features">
+                    <li>Efficient XML/CSV data processing</li>
+                    <li>API-driven automation</li>
+                    <li>Natural language processing</li>
+                    <li>24/7 operational support</li>
+                </ul>
+            </div>
+            
+            <!-- Tech & Business Intelligence -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">📊</div>
+                    <h2 class="service-title">Tech & Business Intelligence</h2>
+                </div>
+                <p class="service-desc">Actionable insights through comprehensive analytics and data visualization.</p>
+                <ul class="service-features">
+                    <li>Custom dashboard development</li>
+                    <li>Real-time KPI monitoring</li>
+                    <li>Predictive trend analysis</li>
+                    <li>Data-driven decision support</li>
+                </ul>
+            </div>
+            
+            <!-- API & FTP Integrations -->
+            <div class="service-card">
+                <div class="service-header">
+                    <div class="service-icon">🔌</div>
+                    <h2 class="service-title">API & FTP Integrations</h2>
+                </div>
+                <p class="service-desc">Seamless connectivity solutions that unify your technology ecosystem.</p>
+                <ul class="service-features">
+                    <li>Secure data exchange protocols</li>
+                    <li>VCOM, Huawei, MLK integration</li>
+                    <li>Legacy system modernization</li>
+                    <li>Automated synchronization</li>
+                </ul>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <div class="footer">
+            <div class="cta-box">
+                <div class="cta-text">Transform Your Business with NASTRON SOLUTIONS</div>
+                <div class="contact-info">
+                    <a href="#" class="contact-item">
+                        <i class="fas fa-globe contact-icon"></i>
+                        <span>www.nastron.solutions</span>
+                    </a>
+                    <a href="mailto:info@nastron.solutions" class="contact-item">
+                        <i class="fas fa-envelope contact-icon"></i>
+                        <span>info@nastron.solutions</span>
+                    </a>
+                </div>
+            </div>
+            <p class="final-tagline">Innovative Technology Solutions • Enterprise-Grade Security • Future-Proof Development</p>
+        </div>
+    </div>
+
+    <script>
+        // Create floating particles for background
+        const particlesContainer = document.getElementById('particles-container');
+        const particleCount = 80;
+        
+        for (let i = 0; i < particleCount; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            
+            // Random properties
+            const size = Math.random() * 4 + 1;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            const animationDuration = Math.random() * 20 + 10;
+            const animationDelay = Math.random() * 5;
+            const opacity = Math.random() * 0.5 + 0.1;
+            
+            particle.style.width = `${size}px`;
+            particle.style.height = `${size}px`;
+            particle.style.left = `${posX}%`;
+            particle.style.top = `${posY}%`;
+            particle.style.animationDuration = `${animationDuration}s`;
+            particle.style.animationDelay = `${animationDelay}s`;
+            particle.style.opacity = opacity;
+            
+            particlesContainer.appendChild(particle);
+        }
+        
+        // Add subtle hover effects to service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transform = 'translateY(-8px)';
+                card.style.boxShadow = '0 20px 40px rgba(0, 100, 200, 0.7)';
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                card.style.transform = 'translateY(0)';
+                card.style.boxShadow = '0 10px 30px rgba(0, 50, 120, 0.3)';
+            });
+        });
+    </script>
+</body>
+</html>
